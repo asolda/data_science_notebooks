@@ -17,3 +17,13 @@ Each of these notebooks has a different focus; here is a list of the notebooks a
 - Time Series: Analysis of time series using `statsmodel` for data exploration (auto-correlation, partial ac, decomposition) and `seaborn` for visualization, using a stock price dataset.
 
 - Titanic: The famous Titanic challenge from Kaggle; include data visualization, data exploration, feature engineering and model evaluation.
+
+## Docker container
+
+You can run all the notebooks in the provided Docker container; this can be extremely useful if you have troubles configuring your environment or if you want to quickly try these notebooks without messing up your laptop.
+
+You can build the image with the provided Dockerfile (`docker build docker/` from the root of the project) or you can pull the container from [my dockerhub profile](https://hub.docker.com/r/asolda/data_science_notebooks/).
+
+To start the container, simply run `docker run -it --rm -p 8888:8888 asolda/data_science_notebooks`. Take note of the authentication token included in the notebook startup log messages. Include it in the URL you visit to access the Notebook server or enter it in the Notebook login form.
+
+The container itself is a modified version of the [jupyter datascience container](https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook), I've just removed some packages that I don't use and I have included a few more packages that I use (such as plotly and cufflinks).
