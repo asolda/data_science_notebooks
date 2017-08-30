@@ -27,3 +27,15 @@ You can build the image with the provided Dockerfile (`docker build docker/` fro
 To start the container, simply run `docker run -it --rm -p 8888:8888 asolda/data_science_notebooks`. Take note of the authentication token included in the notebook startup log messages. Include it in the URL you visit to access the Notebook server or enter it in the Notebook login form.
 
 The container itself is a modified version of the [jupyter datascience container](https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook), I've just removed some packages that I don't use and I have included a few more packages that I use (such as plotly and cufflinks).
+
+### Notebook options
+
+The Docker container executes a `start-notebook.sh` script script by default. You can pass Jupyter command line options through this script when launching the container, for example you can disable all authentication mechanisms:
+```
+docker run -d -p 8888:8888 asolda/data_science_notebooks start-notebook.sh --NotebookApp.token=''
+```
+
+Furthermore, the `start.sh` script supports the same features as the default start-notebook.sh script, but allows you to specify an arbitrary command to execute; as an example, to run JupyterLab instead of the classic notebook, run the following:
+```
+docker run -it --rm -p 8888:8888 asolda/data_science_notebooks start.sh jupyter lab
+```
