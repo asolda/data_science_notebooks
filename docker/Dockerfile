@@ -149,8 +149,9 @@ RUN conda install --quiet --yes \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
     fix-permissions $CONDA_DIR
-    RUN pip install -q plotly
-    RUN pip install -q cufflinks
+RUN pip install -q plotly
+RUN pip install -q cufflinks
+RUN conda install -c conda-forge keras tensorflow
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
